@@ -28,7 +28,7 @@ COPY .env .env
 
 # Collect static files and apply DB migrations
 RUN python manage.py collectstatic --noinput || true
-RUN python manage.py migrate
+# RUN python manage.py migrate
 
 # Expose port
 EXPOSE 8000
