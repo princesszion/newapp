@@ -574,37 +574,42 @@
 	</section>
 
 	<section class="ftco-section bg-light" id="blog-section">
-		<div class="container">
-			<div class="row justify-content-center mb-5 pb-5" style="margin-top: -15%;">
-				<div class="col-md-7 heading-section text-center ftco-animate">
-					<span class="subheading"></span>
-					<h2 class="mb-4"> Blog</h2>
-					<p>As I journey along my professional path, I share my musings on this blog section of my website. I hope these reflective pieces inspire you on your own professional path as well. Welcome to my blog!</p>
-				</div>
-			</div>
-			<div class="row d-flex">
-				{% for post in posts %}
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry justify-content-end">
-						<a href="{% url 'blog_detail' post.pk %}" class="block-20" style="background-image: url('{{ post.image.url }}');">
-						</a>
-						<div class="text mt-3 float-right d-block">
-							<div class="d-flex align-items-center mb-3 meta">
-								<p class="mb-0">
-									<span class="mr-2">{{ post.created_at|date:"F d, Y" }}</span>
-									<a href="#" class="mr-2">{{ post.author }}</a>
-									<!-- You can add comment count logic here if needed -->
-								</p>
-							</div>
-							<h3 class="heading"><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
-							<p>{{ post.content|truncatewords:20 }}</p>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</section>
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-5" style="margin-top: -15%;">
+      <div class="col-md-7 heading-section text-center ftco-animate">
+        <span class="subheading"></span>
+        <h2 class="mb-4"> Blog</h2>
+        <p>As I journey along my professional path, I share my musings on this blog section of my website. I hope these reflective pieces inspire you on your own professional path as well. Welcome to my blog!</p>
+      </div>
+    </div>
+
+    <!-- BLOG CARDS -->
+    <div class="row justify-content-center">
+      {% for post in posts %}
+      <div class="col-11 col-sm-10 col-md-6 col-lg-4 d-flex justify-content-center ftco-animate">
+        <div class="blog-entry w-100">
+          <a href="{% url 'blog_detail' post.pk %}" class="block-20"
+             style="background-image: url('{{ post.image.url }}');">
+          </a>
+          <div class="text mt-3 d-block">
+            <div class="d-flex align-items-center mb-3 meta">
+              <p class="mb-0">
+                <span class="mr-2">{{ post.created_at|date:"F d, Y" }}</span>
+                <a href="#" class="mr-2">{{ post.author }}</a>
+              </p>
+            </div>
+            <h3 class="heading">
+              <a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a>
+            </h3>
+            <p>{{ post.content|striptags|truncatewords:20 }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 	<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
 		<div class="container">
 			<div class="row justify-content-center mb-5 pb-3">
